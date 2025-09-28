@@ -52,7 +52,7 @@ Atualmente, o CVE Bot coleta CVEs de quase todas as fontes oficiais ou confiáve
 docker run -p 8080:8080 gustavodcdamas/cve_collector:latest
 ```
 
-## docker-compose
+## docker-compose (recomendado para maior controle e precisão)
 
 1- Crie um arquivo .env, e cole as informações contidas no .env.example, e preencha conforme sua necessidade (webhook do teams, webhook do discord, token do seu bot no telegram, canal que deseja que o as notificações sejam enviadas etc):
 
