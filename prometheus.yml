@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 60s
+
+scrape_configs:
+  - job_name: "cve_collector"
+    static_configs:
+      - targets: ["172.83.238.210:8888"]
+    scrape_interval: 30s
+    metrics_path: /metrics

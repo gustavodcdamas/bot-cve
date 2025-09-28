@@ -1,0 +1,10 @@
+route:
+  receiver: 'teams-telegram'
+
+receivers:
+- name: 'teams-telegram'
+  webhook_configs:
+  - url: 'SEU_WEBHOOK_DO_TEAMS'
+    send_resolved: false
+  - url: 'https://api.telegram.org/bot<SEU_TOKEN>/sendMessage?chat_id=@<SEU_CANAL>'
+    send_resolved: false

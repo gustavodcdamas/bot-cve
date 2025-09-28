@@ -1,0 +1,42 @@
+groups:
+  # Seus grupos de alertas existentes...
+  
+  # ADICIONE ESTE GRUPO PARA CVE ALERTS
+  - name: cve_alerts
+    rules:
+      - alert: CVEBotDown
+        expr: up{job="cve_collector"} == 0
+        for: 5m
+        labels:
+          severity: critical
+          service: cve_bot
+        annotations:
+          summary: "CVE Bot está offline"
+          description: "O CVE Bot não está respondendo há mais de 5 minutos"
+
+      - alert: HighSeverityCVE
+        expr: increase(cve_processed_total{severity="CRITICAL"}[1h]) > 0
+        labels:
+          severity: warning
+          service: cve_bot
+        annotations:
+          summary: "CVE crítica detectada"
+          description: "{{ $value }} CVEs críticas foram detectadas na última hora"
+
+      - alert: CVECollectionErrors
+        expr: increase(cve_collection_errors_total[1h]) > 10
+        labels:
+          severity: warning
+          service: cve_bot
+        annotations:
+          summary: "Muitos erros na coleta de CVEs"
+          description: "{{ $value }} erros na coleta de CVEs na última hora"
+
+      - alert: NoNewCVEs
+        expr: time() - cve_last_check_timestamp > 7200  # 2 horas
+        labels:
+          severity: warning
+          service: cve_bot
+        annotations:
+          summary: "CVE Bot não está coletando dados"
+          description: "Nenhuma verificação de CVE há mais de 2 horas"

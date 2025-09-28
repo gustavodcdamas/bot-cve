@@ -1,0 +1,24 @@
+services:
+  cve_collector:
+    container_name: cve_collector
+    #image: cve_collector:latest
+    build: .
+    mem_limit: 1024M
+    cpus: 0.15
+    ports:
+      - "8888:8888"
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    environment:
+      - TZ=America/Sao_Paulo
+    networks:
+      - sistemas_net
+
+networks:
+  sistemas_net:
+    external: true
+    name: sistemas_net
+

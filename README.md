@@ -2,6 +2,8 @@
 
 Um Bot que envia CVEs catalogadas em tempo real para canais no telegram, discord e teams (ou qualquer outra plataforma que tenha webhook com um payload compatível). As CVEs são filtradas por palavras chaves, inseridas no arquivo .env na hora da configuração do bot.
 
+Bot com total suporte a coleta via Prometheus, e alertas via Alertmanager.
+
 ## Pré requisitos
 
 Docker desktop, ou docker engine, ou docker-compose.
